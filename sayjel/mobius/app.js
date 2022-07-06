@@ -24,24 +24,51 @@ camera.lookAt(scene.position);
 new THREE.OrbitControls(camera, renderer.domElement);
 
 
+polarGrid(10, 10, 10)
 
 
-A Möbius strip of half - width w with midcircle of radius R and at height z = 0 can be represented parametrically by
+function polarGrid(r, u, v) {
+
+
+    let stepV = Math.PI / v
+    let geometry = new THREE.SphereGeometry(1, 1, 1)
+
+
+    for (var angle = 0; angle < Math.PI; angle += stepV) {
+
+        let angle = 0;
+        let x = r * Math.cos(angle);
+        let z = r * Math.sin(angle);
+
+        let mesh = new THREE.Mesh(geometry)
+        mesh.position.x = x
+        mesh.position.z = z
+
+        scene.add(mesh)
+
+
+    }
 
 
 
-function mobius(radius) {
-
-    let R = radius // midcircle of radius
-    let t = null 
-    let s = null
-
-    let x = [R + s*Math.cos(0.5*t)] * Math.cos(t)
-    let y = [R + s*Math.cos(0.5*t)] * Math.sin(t)
-    let z = s*Math.sin(0.5*t),
 
 
 }
+
+
+
+// function mobius(radius, theta) {
+
+//     let R = radius // midcircle of radius
+//     let t = null 
+//     let s = null
+
+//     let x = [R + s*Math.cos(0.5*t)] * Math.cos(t)
+//     let y = [R + s*Math.cos(0.5*t)] * Math.sin(t)
+//     let z = s*Math.sin(0.5*t),
+
+
+// }
 
 
 
@@ -61,36 +88,36 @@ function generateMobiusStrip(strip, DIMX, DIMY) {
 
     const radius = 1
     const mat = new THREE.MeshPhongMaterial(/*{ wireframe: true}*/
-);
+// );
 
-for (let i = 0; i < DIMX; i++) {
+// for (let i = 0; i < DIMX; i++) {
 
-    const a = Math.PI / DIMX * 2 * i;
-    const o = new THREE.Object3D();
-    o.position.set(Math.cos(a), Math.sin(a * 5) / 30, Math.sin(a))
-    o.position.multiplyScalar(radius);
-    o.lookAt(scene.position);
-    strip.add(o);
-    const mesh = new THREE.Mesh(box, mat);
-    mesh.scale.set(0.03, 0.3, 0.001) // check these values 
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
-    mesh.rotation.x = i / DIMX * Math.PI;
-    o.add(mesh)
+//     const a = Math.PI / DIMX * 2 * i;
+//     const o = new THREE.Object3D();
+//     o.position.set(Math.cos(a), Math.sin(a * 5) / 30, Math.sin(a))
+//     o.position.multiplyScalar(radius);
+//     o.lookAt(scene.position);
+//     strip.add(o);
+//     const mesh = new THREE.Mesh(box, mat);
+//     mesh.scale.set(0.03, 0.3, 0.001) // check these values 
+//     mesh.castShadow = true;
+//     mesh.receiveShadow = true;
+//     mesh.rotation.x = i / DIMX * Math.PI;
+//     o.add(mesh)
 
-}
-
-
-
-}
-
-function subdvideMesh() {
+// }
 
 
 
-}
+// }
 
-*/
+// function subdvideMesh() {
+
+
+
+// }
+
+// */
 
 
 
